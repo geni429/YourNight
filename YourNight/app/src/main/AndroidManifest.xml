@@ -4,7 +4,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_logo"
         android:label="@string/app_name">
         <activity
             android:name="com.yournight.stack.yournight.Splash"
@@ -26,6 +26,9 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name="com.yournight.stack.yournight.PostItem"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.yournight.stack.yournight.Tutorial"
             android:theme="@style/AppTheme" />
 
         <receiver android:name="com.yournight.stack.yournight.Widget">
