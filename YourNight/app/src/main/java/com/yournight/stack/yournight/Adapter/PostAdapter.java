@@ -3,6 +3,7 @@ package com.yournight.stack.yournight.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +24,6 @@ import io.realm.RealmResults;
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     private RealmResults<DiaryData> mRealmResults;
     private Context mContext;
-    private int currentPostion;
 
     public PostAdapter(RealmResults<DiaryData> realmResults, Context context){
         this.mRealmResults = realmResults;
@@ -31,29 +31,19 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     }
 
     @Override
-    public PostAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public PostAdapter.ViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.post_list, parent, false);
-        v.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, PostItem.class);
-                intent.putExtra("title", mRealmResults.get(currentPostion).getTitle());
-                intent.putExtra("content", mRealmResults.get(currentPostion).getContent());
-                mContext.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-            }
-        });
         return new ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(PostAdapter.ViewHolder holder, int position) {
-        this.currentPostion = position;
+    public void onBindViewHolder(PostAdapter.ViewHolder holder, final int position) {
         if(position == 0){
             Glide.with(mContext)
                     .load(R.drawable.first_slide)
                     .fitCenter()
                     .into(holder.background);
-        } else if(position == 9){
+        } else if(position == mRealmResults.size()-1){
             Glide.with(mContext)
                     .load(R.drawable.last_slide)
                     .fitCenter()
@@ -64,6 +54,15 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                     .fitCenter()
                     .into(holder.background);
         }
+        holder.background.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, PostItem.class);
+                intent.putExtra("title", mRealmResults.get(position).getTitle());
+                intent.putExtra("content", mRealmResults.get(position).getContent());
+                mContext.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+            }
+        });
         holder.title.setText(mRealmResults.get(position).getTitle());
         holder.content.setText(mRealmResults.get(position).getContent());
     }

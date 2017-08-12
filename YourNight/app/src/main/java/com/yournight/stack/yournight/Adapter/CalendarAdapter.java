@@ -54,7 +54,7 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHo
         holder.date.setText(count+"");
         for(int i=0; i<mRealmResult.size(); i++){
             if (mRealmResult.get(i).getDate().equals(count+"")){
-                switch (mRealmResult.get(i).getCount()) {
+                switch ((int)mRealmResult.where().contains("date", count+"").count()) {
                     case 0:
                         break;
                     case 1:
@@ -70,6 +70,9 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHo
                         holder.date.setBackgroundResource(R.drawable.count4);
                         break;
                     case 5:
+                        holder.date.setBackgroundResource(R.drawable.count5);
+                        break;
+                    default:
                         holder.date.setBackgroundResource(R.drawable.count5);
                         break;
                 }

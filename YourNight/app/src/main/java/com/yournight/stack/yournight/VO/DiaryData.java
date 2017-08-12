@@ -58,7 +58,11 @@ public class DiaryData extends RealmObject {
         return count;
     }
 
-    public void setCount(int count) {
+    public void setCount(int count){
         this.count = count;
+    }
+
+    public void addCount(){
+        this.count = ++count;
     }
 }

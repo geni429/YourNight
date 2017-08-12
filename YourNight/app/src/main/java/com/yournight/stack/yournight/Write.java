@@ -26,7 +26,6 @@ public class Write extends AppCompatActivity {
     private EditText title, content;
     private Calendar calendar;
     private FloatingActionButton save;
-    private int count = 1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,13 +59,6 @@ public class Write extends AppCompatActivity {
                 diaryData.setContent(content);
                 diaryData.setDate(calendar.get(Calendar.DATE)+"");
                 diaryData.setDetailDate(calendar.get(Calendar.YEAR) + "" + (calendar.get(Calendar.MONTH)+1) + "" + calendar.get(Calendar.DATE) + "");
-                if(diaryData.getDate() != null && diaryData.getDate().equals(calendar.get(Calendar.DATE)+"")){
-                    diaryData.setCount(count++);
-                    Log.d("plus count!", "do");
-                } else {
-                    diaryData.setCount(count);
-                    Log.d("plus count!", "not");
-                }
                 diaryData.setTime(calendar.get(Calendar.HOUR_OF_DAY) + "" + calendar.get(Calendar.MINUTE) + "" + calendar.get(Calendar.SECOND) + "");
             }
         });
