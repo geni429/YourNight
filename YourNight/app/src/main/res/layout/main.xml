@@ -1,15 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
-    android:gravity="center_horizontal|center_vertical">
-    <android.support.v4.view.ViewPager
-        android:id="@+id/calendar_pager"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
-
-    </android.support.v4.view.ViewPager>
-</LinearLayout>
+        android:layout_height="match_parent"
+        android:background="@drawable/background_img"
+        android:gravity="center_horizontal|center_vertical">
+        <android.support.v4.view.ViewPager
+            android:id="@+id/calendar_pager"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="25dp"
+            android:layout_height="350dp">
+        </android.support.v4.view.ViewPager>
+    </LinearLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/write"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/ic_write"
+        app:backgroundTint="@android:color/white"
+        app:layout_anchor="@id/calendar_pager"
+        app:layout_anchorGravity="right|bottom" />
+</android.support.design.widget.CoordinatorLayout>

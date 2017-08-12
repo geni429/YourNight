@@ -21,6 +21,9 @@
         <activity
             android:name="com.yournight.stack.yournight.Post"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.yournight.stack.yournight.Write"
+            android:theme="@style/AppTheme" />
 
         <receiver android:name="com.yournight.stack.yournight.Widget">
             <intent-filter>

@@ -2,7 +2,9 @@ package com.yournight.stack.yournight;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,8 +23,8 @@ import io.realm.Realm;
 public class Write extends AppCompatActivity {
     private Realm mRealm;
     private EditText title, content;
-    private Button save;
     private Calendar calendar;
+    private FloatingActionButton save;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,7 +36,7 @@ public class Write extends AppCompatActivity {
 
         title = (EditText)findViewById(R.id.title);
         content = (EditText)findViewById(R.id.content);
-        save = (Button)findViewById(R.id.save);
+        save = (FloatingActionButton) findViewById(R.id.save);
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +52,8 @@ public class Write extends AppCompatActivity {
         DiaryData diaryData = mRealm.createObject(DiaryData.class);
         diaryData.setContent(title);
         diaryData.setTitle(content);
-        diaryData.setDate(calendar.get(Calendar.DATE)+"");
+        diaryData.setDate(calendar.get(Calendar.YEAR) + "" + (calendar.get(Calendar.MONTH)+1) + "" + calendar.get(Calendar.DATE) + "");
+        diaryData.setTime(calendar.get(Calendar.HOUR_OF_DAY) + "" + calendar.get(Calendar.MINUTE) + "" + calendar.get(Calendar.SECOND) + "");
         mRealm.commitTransaction();
     }
 }

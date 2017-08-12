@@ -10,6 +10,7 @@ public class DiaryData extends RealmObject {
     private String title;
     private String content;
     private String date;
+    private String time;
 
     public String getTitle() {
         return title;
@@ -33,5 +34,13 @@ public class DiaryData extends RealmObject {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 }
