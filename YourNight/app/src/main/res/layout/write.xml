@@ -12,9 +12,9 @@
             android:id="@+id/writeArea"
             android:layout_width="match_parent"
             android:layout_height="450dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="25dp"
-            android:layout_centerInParent="true"
+            android:layout_marginLeft="18dp"
+            android:layout_marginRight="28dp"
+            android:layout_centerVertical="true"
             android:background="@drawable/speech_bubble">
             <EditText
                 android:id="@+id/title"

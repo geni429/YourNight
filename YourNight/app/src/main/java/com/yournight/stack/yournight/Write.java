@@ -1,5 +1,6 @@
 package com.yournight.stack.yournight;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -25,6 +26,7 @@ public class Write extends AppCompatActivity {
     private EditText title, content;
     private Calendar calendar;
     private FloatingActionButton save;
+    private int count = 1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,18 +44,31 @@ public class Write extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 saveContent(title.getText().toString(), content.getText().toString());
+                startActivity(new Intent(getApplicationContext(), Main.class));
+                finish();
             }
         });
 
     }
 
-    private void saveContent(String title, String content){
-        mRealm.beginTransaction();
-        DiaryData diaryData = mRealm.createObject(DiaryData.class);
-        diaryData.setContent(title);
-        diaryData.setTitle(content);
-        diaryData.setDate(calendar.get(Calendar.YEAR) + "" + (calendar.get(Calendar.MONTH)+1) + "" + calendar.get(Calendar.DATE) + "");
-        diaryData.setTime(calendar.get(Calendar.HOUR_OF_DAY) + "" + calendar.get(Calendar.MINUTE) + "" + calendar.get(Calendar.SECOND) + "");
-        mRealm.commitTransaction();
+    private void saveContent(final String title, final String content){
+        mRealm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                DiaryData diaryData = mRealm.createObject(DiaryData.class);
+                diaryData.setTitle(title);
+                diaryData.setContent(content);
+                diaryData.setDate(calendar.get(Calendar.DATE)+"");
+                diaryData.setDetailDate(calendar.get(Calendar.YEAR) + "" + (calendar.get(Calendar.MONTH)+1) + "" + calendar.get(Calendar.DATE) + "");
+                if(diaryData.getDate() != null && diaryData.getDate().equals(calendar.get(Calendar.DATE)+"")){
+                    diaryData.setCount(count++);
+                    Log.d("plus count!", "do");
+                } else {
+                    diaryData.setCount(count);
+                    Log.d("plus count!", "not");
+                }
+                diaryData.setTime(calendar.get(Calendar.HOUR_OF_DAY) + "" + calendar.get(Calendar.MINUTE) + "" + calendar.get(Calendar.SECOND) + "");
+            }
+        });
     }
 }

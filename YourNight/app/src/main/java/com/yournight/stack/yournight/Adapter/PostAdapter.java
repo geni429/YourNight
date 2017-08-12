@@ -7,25 +7,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.jmsys.mywallpaper.R;
-import com.yournight.stack.yournight.Write;
+import com.yournight.stack.yournight.PostItem;
+import com.yournight.stack.yournight.VO.DiaryData;
+
+import io.realm.RealmResults;
 
 /**
  * Created by geni on 2017. 8. 12..
  */
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
-    private String title;
-    private String content;
+    private RealmResults<DiaryData> mRealmResults;
     private Context mContext;
+    private int currentPostion;
 
-    public PostAdapter(String title, String content, Context context){
-        this.title = title;
-        this.content = content;
+    public PostAdapter(RealmResults<DiaryData> realmResults, Context context){
+        this.mRealmResults = realmResults;
         this.mContext = context;
     }
 
@@ -35,7 +36,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mContext.startActivity(new Intent(mContext, Write.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                Intent intent = new Intent(mContext, PostItem.class);
+                intent.putExtra("title", mRealmResults.get(currentPostion).getTitle());
+                intent.putExtra("content", mRealmResults.get(currentPostion).getContent());
+                mContext.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
             }
         });
         return new ViewHolder(v);
@@ -43,6 +47,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(PostAdapter.ViewHolder holder, int position) {
+        this.currentPostion = position;
         if(position == 0){
             Glide.with(mContext)
                     .load(R.drawable.first_slide)
@@ -59,13 +64,13 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                     .fitCenter()
                     .into(holder.background);
         }
-        holder.title.setText(title);
-        holder.content.setText(content);
+        holder.title.setText(mRealmResults.get(position).getTitle());
+        holder.content.setText(mRealmResults.get(position).getContent());
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return mRealmResults.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
