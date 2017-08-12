@@ -3,6 +3,7 @@ package com.yournight.stack.yournight.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,9 +19,12 @@ import com.yournight.stack.yournight.Post;
 
 public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHolder> {
     private int count = 1;
+    private int dates = 0;
     private Context mContext;
-    public CalendarAdapter(Context context){
+    private int month;
+    public CalendarAdapter(Context context, int month){
         this.mContext = context;
+        this.month = month;
     }
 
     @Override
@@ -43,7 +47,12 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return 31;
+        if(month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month ==12){
+            this.dates = 31;
+        } else {
+            this.dates = 30;
+        }
+        return dates;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

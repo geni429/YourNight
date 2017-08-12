@@ -6,12 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.jmsys.mywallpaper.R;
-
-import org.w3c.dom.Text;
 
 /**
  * Created by geni on 2017. 8. 12..
@@ -41,16 +40,28 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                     .load(R.drawable.first_slide)
                     .fitCenter()
                     .into(holder.background);
+//            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
+//                    RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+//            layoutParams.setMargins(0, 30, 0, 0);
+//            holder.layout.setLayoutParams(layoutParams);
         } else if(position == 9){
             Glide.with(mContext)
                     .load(R.drawable.last_slide)
                     .fitCenter()
                     .into(holder.background);
+//            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
+//                    RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+//            layoutParams.setMargins(0, 0, 0, 0);
+//            holder.layout.setLayoutParams(layoutParams);
         } else {
             Glide.with(mContext)
                     .load(R.drawable.slide)
                     .fitCenter()
                     .into(holder.background);
+//            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
+//                    RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+//            layoutParams.setMargins(0, 0, 0, 30);
+//            holder.layout.setLayoutParams(layoutParams);
         }
         holder.title.setText(title);
         holder.content.setText(content);
@@ -65,12 +76,14 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         TextView title;
         TextView content;
         ImageView background;
+//        RelativeLayout layout;
 
         public ViewHolder(View view){
             super(view);
             this.title = (TextView)view.findViewById(R.id.title);
             this.content = (TextView)view.findViewById(R.id.content);
             this.background = (ImageView)view.findViewById(R.id.background);
+//            this.layout = (RelativeLayout)view.findViewById(R.id.layout);
         }
     }
 }
