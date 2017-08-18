@@ -16,22 +16,4 @@
         android:padding="@dimen/item_offset"
         app:layoutManager="LinearLayoutManager">
     </android.support.v7.widget.RecyclerView>
-    <!--<LinearLayout-->
-        <!--android:orientation="horizontal"-->
-        <!--android:id="@+id/topMargin"-->
-        <!--android:layout_alignParentTop="true"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="30dp"-->
-        <!--android:background="#00ffffff">-->
-
-    <!--</LinearLayout>-->
-    <!--<LinearLayout-->
-        <!--android:orientation="horizontal"-->
-        <!--android:id="@+id/bottmMargin"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="30dp"-->
-        <!--android:background="#00ffffff">-->
-
-    <!--</LinearLayout>-->
 </RelativeLayout>

@@ -58,7 +58,7 @@ public class Write extends AppCompatActivity {
                 diaryData.setTitle(title);
                 diaryData.setContent(content);
                 diaryData.setDate(calendar.get(Calendar.DATE)+"");
-                diaryData.setDetailDate(calendar.get(Calendar.YEAR) + "" + (calendar.get(Calendar.MONTH)+1) + "" + calendar.get(Calendar.DATE) + "");
+                diaryData.setMonth((calendar.get(Calendar.MONTH))+1+"");
                 diaryData.setTime(calendar.get(Calendar.HOUR_OF_DAY) + "" + calendar.get(Calendar.MINUTE) + "" + calendar.get(Calendar.SECOND) + "");
             }
         });

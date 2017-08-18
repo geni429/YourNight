@@ -7,7 +7,7 @@
     <RelativeLayout
         android:layout_width="320dp"
         android:layout_height="500dp"
-        android:layout_centerVertical="true"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true">
         <RelativeLayout
             android:id="@+id/bubble_content"
@@ -82,6 +82,7 @@
 
         </RelativeLayout>
         <RelativeLayout
+            android:onClick="onReceive"
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:layout_marginTop="20dp"

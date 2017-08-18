@@ -18,6 +18,8 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
             android:background="#00FFFFFF"
+            android:textSize="20dp"
+            android:textStyle="bold"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"/>
 
@@ -35,9 +37,30 @@
             android:id="@+id/content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxLines="10"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:layout_below="@+id/line"
             android:background="#00FFFFFF"/>
+
+        <ImageView
+            android:id="@+id/deleteBtn"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/ic_delete_black_24dp"/>
+
+        <ImageView
+            android:id="@+id/modifyBtn"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/ic_create_black_36dp"
+            android:layout_toLeftOf="@+id/deleteBtn"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="15dp"/>
     </RelativeLayout>
 </RelativeLayout>

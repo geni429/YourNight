@@ -40,20 +40,21 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHo
     @Override
     public CalendarAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.date, parent, false);
-        v.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mContext.startActivity(new Intent(mContext, Post.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-            }
-        });
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(CalendarAdapter.ViewHolder holder, int position) {
         holder.date.setText(count+"");
+        holder.date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, Post.class);
+                mContext.startActivity(intent);
+            }
+        });
         for(int i=0; i<mRealmResult.size(); i++){
-            if (mRealmResult.get(i).getDate().equals(count+"")){
+            if (mRealmResult.get(i).getDate().equals(count+"") && mRealmResult.get(i).getMonth().equals(month+"")){
                 switch ((int)mRealmResult.where().contains("date", count+"").count()) {
                     case 0:
                         break;

@@ -9,6 +9,7 @@ import android.util.Log;
 import com.yournight.stack.yournight.VO.UtilValue;
 
 import io.realm.Realm;
+import io.realm.RealmConfiguration;
 import io.realm.RealmResults;
 
 /**
@@ -23,6 +24,10 @@ public class Splash extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mRealm.init(getApplicationContext());
+        RealmConfiguration config = new RealmConfiguration
+                .Builder()
+                .deleteRealmIfMigrationNeeded()
+                .build();
         mRealm = Realm.getDefaultInstance();
         realmResults = mRealm.where(UtilValue.class).findAll();
         if(mRealm != null){

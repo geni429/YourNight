@@ -3,7 +3,9 @@ package com.yournight.stack.yournight;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
+import android.widget.RelativeLayout;
 import android.widget.RemoteViews;
 
 import com.jmsys.mywallpaper.R;
@@ -38,11 +40,15 @@ public class Widget extends AppWidgetProvider {
             Log.d("RAMDOM", rNum+"");
             views.setTextViewText(R.id.title, realmResults.get(rNum).getTitle());
             views.setTextViewText(R.id.content, realmResults.get(rNum).getContent());
-            views.setTextViewText(R.id.date, realmResults.get(rNum).getDetailDate());
+            views.setTextViewText(R.id.date, realmResults.get(rNum).getMonth() + realmResults.get(rNum).getDate());
             views.setTextViewText(R.id.time, realmResults.get(rNum).getTime());
             views.setTextViewText(R.id.deleteBtn, "삭제");
         }
         appWidgetManager.updateAppWidget(appWidgetIds, views);
+    }
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
     }
 
     @Override
